@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redisson-test
+  labels:
+    app: redisson-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redisson-test
+  template:
+    metadata:
+      labels:
+        app: redisson-test
+    spec:
+      containers:
+      - name: redisson-test
+        image: antonum/jtest
+        env:
+        - name: REDIS_MASTER
+          value: redis://172.30.226.188:14297
+        - name: REDIS_SLAVE
+          value: redis://172.30.197.189:10000
+        - name: REDIS_SLEEP
+          value: "30"
+        - name: REDIS_PASSWORD
+          value: "ps2kpXjk"
+          
